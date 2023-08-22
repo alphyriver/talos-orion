@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: origin-ca-issuer-crds
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: origin-ca-issuer
+  source:
+    repoURL: https://github.com/alphyriver/talos-lyra.git
+    targetRevision: HEAD
+    path: deploy/crds
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: origin-ca-issuer
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  revisionHistoryLimit: 10

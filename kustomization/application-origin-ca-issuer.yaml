@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: origin-ca-issuer
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: origin-ca-issuer
+  source:
+    repoURL: https://github.com/alphyriver/talos-lyra.git
+    targetRevision: HEAD
+    path: deploy/charts/origin-ca-issuer
+    helm:
+      releaseName: origin-ca-issuer
+      valuesFile:
+        - values-prod.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: origin-ca-issuer
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  revisionHistoryLimit: 10
