@@ -11,9 +11,6 @@ spec:
     repoURL: https://github.com/alphyriver/talos-orion.git
     targetRevision: HEAD
     path: deploy/charts/origin-ca-issuer
-    helm:
-      valuesFile:
-        - values-prod.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: origin-ca-issuer
@@ -23,5 +20,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ApplyServerSide=true
   revisionHistoryLimit: 10
