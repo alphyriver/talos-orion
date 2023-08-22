@@ -8,7 +8,7 @@ metadata:
 spec:
   project: origin-ca-issuer
   source:
-    repoURL: https://github.com/alphyriver/talos-lyra.git
+    repoURL: https://github.com/alphyriver/talos-orion.git
     targetRevision: HEAD
     path: deploy/charts/origin-ca-issuer
     helm:
