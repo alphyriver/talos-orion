@@ -12,7 +12,6 @@ spec:
     targetRevision: HEAD
     path: deploy/charts/origin-ca-issuer
     helm:
-      releaseName: origin-ca-issuer
       valuesFile:
         - values-prod.yaml
   destination:
